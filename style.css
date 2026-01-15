@@ -1,14 +1,19 @@
 /* CSS Variables & Reset */
 :root {
-    --bg-color: #ffffff;
-    --bg-secondary: #f8fafc;
-    --text-primary: #1e293b;
-    --text-secondary: #475569;
-    --accent-blue: #2563eb;
+    --bg-color: #0f172a;
+    /* Dark Slate */
+    --bg-secondary: #1e293b;
+    /* Lighter Slate */
+    --text-primary: #f1f5f9;
+    /* White-ish */
+    --text-secondary: #94a3b8;
+    /* Slate Gray */
+    --accent-blue: #3b82f6;
+    /* Brighter Blue for Dark Mode */
     --accent-dark-blue: #1e1b4b;
-    /* Footer BG */
-    --accent-cyan: #06b6d4;
-    --white: #ffffff;
+    --accent-cyan: #22d3ee;
+    --white: #1e293b;
+    /* Remap 'white' to card background color */
 
     /* Layout */
     --sidebar-width: 80px;
@@ -17,11 +22,10 @@
     /* Fonts */
     --font-main: 'Inter', sans-serif;
     --font-serif: 'Merriweather', serif;
-    /* Optional for "Hi" */
 
-    /* Shadows */
-    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.05);
-    --shadow-hover: 0 10px 25px rgba(37, 99, 235, 0.15);
+    /* Shadows - adjusted for dark mode */
+    --shadow-soft: 0 4px 20px rgba(0, 0, 0, 0.3);
+    --shadow-hover: 0 10px 25px rgba(59, 130, 246, 0.2);
 }
 
 * {
@@ -49,8 +53,9 @@ body {
     left: 0;
     width: var(--sidebar-width);
     height: 100vh;
-    background-color: var(--white);
-    border-right: 1px solid #e2e8f0;
+    background-color: var(--bg-color);
+    /* Match body bg */
+    border-right: 1px solid #334155;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -60,7 +65,8 @@ body {
 }
 
 .social-sidebar a {
-    color: var(--text-primary);
+    color: var(--text-secondary);
+    /* Muted initially */
     font-size: 1.5rem;
     transition: color 0.3s, transform 0.3s;
 }
@@ -89,9 +95,10 @@ body {
     position: sticky;
     top: 0;
     z-index: 999;
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(15, 23, 42, 0.85);
+    /* Dark semi-transparent */
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid #f1f5f9;
+    border-bottom: 1px solid #334155;
 }
 
 .nav-bar {
@@ -152,8 +159,8 @@ h3 {
 
 /* Glass/Card Panels for Light Mode */
 .glass-panel {
-    background: var(--white);
-    border: 1px solid #e2e8f0;
+    background: var(--bg-secondary);
+    border: 1px solid #334155;
     border-radius: 16px;
     padding: 2.5rem;
     box-shadow: var(--shadow-soft);
@@ -255,7 +262,7 @@ h3 {
     justify-content: center;
     align-items: center;
     position: relative;
-    max-width: 450px;
+    max-width: 300px;
 }
 
 .hero-img {
@@ -277,8 +284,8 @@ h3 {
 }
 
 .card {
-    background: #fff;
-    border: 1px solid #e2e8f0;
+    background: var(--bg-secondary);
+    border: 1px solid #334155;
     padding: 2rem;
     border-radius: 12px;
     transition: all 0.3s ease;
@@ -320,18 +327,75 @@ h3 {
 .skill-tag {
     background: #f1f5f9;
     color: var(--text-secondary);
-    padding: 0.6rem 1.2rem;
-    border-radius: 8px;
+    padding: 0.8rem 1.5rem;
+    border-radius: 12px;
     font-size: 0.95rem;
-    font-weight: 500;
-    transition: all 0.2s;
+    font-weight: 600;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: 1px solid transparent;
+    /* Prepare for border color */
+    background: var(--bg-secondary);
 }
 
-.skill-tag:hover {
-    background: var(--accent-blue);
-    color: white;
-    transform: scale(1.05);
+.skill-tag i {
+    font-size: 1.1rem;
 }
+
+/* Specific Skill Colors */
+.skill-c {
+    color: #a8b9cc;
+    border-color: #a8b9cc;
+}
+
+.skill-python {
+    color: #ffe873;
+    border-color: #306998;
+}
+
+.skill-seo {
+    color: #4ade80;
+    border-color: #22c55e;
+}
+
+.skill-html {
+    color: #f06529;
+    border-color: #e34f26;
+}
+
+.skill-css {
+    color: #2965f1;
+    border-color: #264de4;
+}
+
+.skill-git {
+    color: #f34f29;
+    border-color: #f05032;
+}
+
+.skill-ui {
+    color: #d946ef;
+    border-color: #c026d3;
+}
+
+.skill-data {
+    color: #06b6d4;
+    border-color: #0891b2;
+}
+
+
+
+.skill-tag:hover {
+    transform: translateY(-3px);
+    background: var(--bg-secondary);
+    /* Keep background dark */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.2);
+}
+
+
 
 /* =========================================
    Contact Form
@@ -356,10 +420,13 @@ h3 {
 .form-group input,
 .form-group textarea {
     padding: 0.8rem;
-    border: 1px solid #cbd5e1;
+    border: 1px solid #334155;
     border-radius: 8px;
     font-family: var(--font-main);
     font-size: 1rem;
+    background: #0f172a;
+    /* Darker bg for inputs */
+    color: var(--text-primary);
 }
 
 .form-group input:focus,
@@ -392,25 +459,42 @@ h3 {
 }
 
 .contact-item {
-    font-size: 1.1rem;
+    font-size: 1rem;
     color: var(--text-primary);
     text-decoration: none;
     display: flex;
     align-items: center;
     gap: 1rem;
+    background: var(--bg-secondary);
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+    border: 1px solid #334155;
+    transition: all 0.3s ease;
+}
+
+.contact-item:hover {
+    transform: translateY(-3px);
+    border-color: var(--accent-blue);
+    background: #1e293b;
+    /* Keep same or slightly lighter */
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.2);
 }
 
 .contact-item span {
     font-weight: 700;
     color: var(--accent-blue);
-    width: 80px;
+    width: 90px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
 }
 
 /* =========================================
    Footer (Connect With Me)
    ========================================= */
 .main-footer {
-    background-color: var(--accent-dark-blue);
+    background-color: #020617;
+    /* Very dark slate, darker than body */
     color: white;
     padding: 0;
     /* overflow: hidden; */
@@ -513,14 +597,21 @@ h3 {
 
 @media (max-width: 768px) {
 
-    /* Collapse sidebar to bottom or hamburger, but for now simple hide and rely on footer/contact */
+    /* Keep sidebar visible on mobile */
     .social-sidebar {
-        display: none;
+        display: flex;
+        width: 60px;
+        /* Narrower for mobile */
+        border-right: 1px solid #334155;
+    }
+
+    .social-sidebar a {
+        font-size: 1.25rem;
     }
 
     .main-wrapper {
-        margin-left: 0;
-        width: 100%;
+        margin-left: 60px;
+        width: calc(100% - 60px);
     }
 
     .nav-bar {
